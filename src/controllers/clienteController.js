@@ -17,7 +17,9 @@ export async function getCliente(req, res) {
     SELECT * FROM tb_cliente
     WHERE id_cliente = ${id}`;
     res.json(cliente);
-  } catch (err) {}
+  } catch (err) {
+    res.status(500).send("Erro ao obter o cliente.");
+  }
 }
 
 export async function createCliente(req, res) {

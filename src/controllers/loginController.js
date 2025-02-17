@@ -6,12 +6,23 @@ dotenv.config();
 
 export async function login(req, res) {
   const { email, senha } = req.body;
-  const id = getUserId(email);
-  token = jwt.sign(id, process.env.SECRET);
+  const usuario = getUserEmail(email);
+  const senhaChecada = await bcrypt.compare(senha, usuario.senha);
+
+  if (!senhaChecada) {
+    return res.status(422).send("Senha inválida.");
+  }
+
+  try {
+    const token = jwt.sign({ userId: usuario.id }, process.env.SECRET);
+    res.status(200).json(token);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 }
 
-async function getUserId(email) {
-  const id = await sql`
-  SELECT id FROM tb_usuario WHERE email = ${email};`;
-  return id;
+async function getUserEmail(email) {
+  const user = await sql`
+  SELECT * FROM tb_usuario WHERE email = ${email};`;
+  return user;
 }
