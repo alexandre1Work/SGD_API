@@ -5,6 +5,7 @@ import clienteRoutes from "./routes/clientesRoutes.js";
 import userRoutes from "./routes/usersRoutes.js";
 import loginRoutes from "./routes/loginRoutes.js";
 import registerRoutes from "./routes/registerRoutes.js";
+import funcionarioRoutes from "./routes/funcionarioRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(clienteRoutes);
 app.use(userRoutes);
 app.use(loginRoutes);
 app.use(registerRoutes);
+app.use(funcionarioRoutes)
 
 app.listen(3000, () =>
   console.log("Servidor rodando http://www.localhost:3000")
