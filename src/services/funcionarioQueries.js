@@ -24,3 +24,4 @@ export const FuncionarioQueries = {
         return await sql`DELETE FROM tb_funcionario WHERE id_funcionario = ${id}`
     }
 }
+
