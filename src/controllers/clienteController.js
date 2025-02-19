@@ -1,8 +1,9 @@
-import { ClienteQueries } from "../services/clienteQueries";
+import { ClienteQueries } from "../services/clienteQueries.js";
 
 export async function getClientes(req, res) {
   try {
     const clientes = await ClienteQueries.getAll();
+    console.log(clientes)
     res.json(clientes);
   } catch (err) {
     console.error(err);
@@ -13,7 +14,7 @@ export async function getClientes(req, res) {
 export async function getCliente(req, res) {
   try {
     const id = req.params.id;
-    const cliente = await ClienteQueries.getById();
+    const cliente = await ClienteQueries.getById(id);
     res.json(cliente);
   } catch (err) {
     res.status(500).send("Erro ao obter o cliente.");
