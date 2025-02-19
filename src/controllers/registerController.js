@@ -1,3 +1,7 @@
+import bcrypt from "bcrypt";
+import { salt } from "../config/bcrypt.js";
+import { sql } from "../services/db.js";
+
 export async function register(req, res) {
   try {
     const { nome, cargo, email, senha } = req.body;
