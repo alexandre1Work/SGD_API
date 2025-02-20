@@ -1,4 +1,4 @@
-import { ClienteQueries } from "../services/clienteQueries.js";
+import { ClienteQueries } from "../queries/clienteQueries.js";
 
 export async function getClientes(req, res) {
   try {
@@ -43,7 +43,7 @@ export async function deleteCliente(req, res) {
   try {
     const id = req.params.id;
     await ClienteQueries.delete(id);
-    res.status(200).send("Cliente deletado com sucesso!")
+    res.status(200).send("Cliente deletado com sucesso!");
   } catch (error) {
     res.status(500).send("Erro ao deletar o cliente.");
   }
