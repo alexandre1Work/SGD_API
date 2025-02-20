@@ -3,7 +3,6 @@ import { ClienteQueries } from "../services/clienteQueries.js";
 export async function getClientes(req, res) {
   try {
     const clientes = await ClienteQueries.getAll();
-    console.log(clientes)
     res.json(clientes);
   } catch (err) {
     console.error(err);
@@ -26,7 +25,7 @@ export async function createCliente(req, res) {
     await ClienteQueries.create(req.body);
     res.status(200).send("Usuário criado com sucesso!");
   } catch (error) {
-    res.status(500).send("Não foi possivel encontrar o cliente.");
+    res.status(500).send("Erro ao criar o cliente.");
   }
 }
 

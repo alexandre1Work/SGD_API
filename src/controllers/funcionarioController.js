@@ -32,7 +32,9 @@ export async function createFuncionario(req, res) {
 export async function updateFuncionario(req, res) {
     try {
         const id = req.params.id;
-        await FuncionarioQueries.update(id, req.body)
+        const dados = req.body;
+        
+        await FuncionarioQueries.update(id, dados)
         res.status(200).send("Funcionário atualizado com sucesso");
     } catch (error) {
         res.status(500).send("Não foi possível atualizar o funcionário");

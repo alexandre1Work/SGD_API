@@ -10,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.get("/funcionarios", getFuncionarios);
-router.get("/funcionarios/:id", getFuncionario);
-router.post("/funcionarios", createFuncionario);
-router.put("/funcionarios/:id", updateFuncionario);
-router.delete("/funcionarios/:id", deleteFuncionario);
+router.get("/funcionario", getFuncionarios);
+router.get("/funcionario/:id", getFuncionario);
+router.post("/funcionario", createFuncionario);
+router.put("/funcionario/:id", updateFuncionario);
+router.delete("/funcionario/:id", deleteFuncionario);
 
 export default router;

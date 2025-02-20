@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import clienteRoutes from "./routes/clientesRoutes.js";
+import clientesRoutes from "./routes/clientesRoutes.js";
 import userRoutes from "./routes/usersRoutes.js";
 import loginRoutes from "./routes/loginRoutes.js";
 import registerRoutes from "./routes/registerRoutes.js";
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Rotas
-app.use(clienteRoutes);
+app.use(clientesRoutes);
 app.use(userRoutes);
 app.use(loginRoutes);
 app.use(registerRoutes);
