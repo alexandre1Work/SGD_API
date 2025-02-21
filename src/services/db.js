@@ -18,7 +18,10 @@ const connectionString = process.env.DATABASE_URL;
 
     const result = await sql`SELECT NOW();`;
     console.log("Conexão bem-sucedida:", result);
+    return sql;
   } catch (error) {
     console.error("Erro ao conectar ao banco:", error);
   }
 })();
+
+export default sql;
