@@ -5,23 +5,14 @@ dotenv.config();
 
 const connectionString = process.env.DATABASE_URL;
 
-(async () => {
-  try {
-    console.log("Testando conexão com o banco...");
+export const sql = postgres(connectionString, {
+  host: "db.ruhvvekthwemutwvxhgs.supabase.co",
+  port: 5432,
+  ssl: "require",
+  family: 4, // Força IPv4
+});
 
-    const sql = postgres(connectionString, {
-      host: "db.ruhvvekthwemutwvxhgs.supabase.co",
-      port: 5432,
-      ssl: "require",
-      family: 4, // Força IPv4
-    });
-
-    const result = await sql`SELECT NOW();`;
-    console.log("Conexão bem-sucedida:", result);
-    return sql;
-  } catch (error) {
-    console.error("Erro ao conectar ao banco:", error);
-  }
-})();
-
-export default sql;
+// Teste de conexão para log
+sql`SELECT NOW()`
+  .then((res) => console.log("Conexão bem-sucedida:", res))
+  .catch((err) => console.error("Erro na conexão:", err));
