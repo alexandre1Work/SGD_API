@@ -22,8 +22,8 @@ export async function getCliente(req, res) {
 
 export async function createCliente(req, res) {
   try {
-    await ClienteQueries.create(req.body);
-    res.status(200).send("Usuário criado com sucesso!");
+    await ClienteQueries.create(novoCliente.toJSON());
+    res.status(200).send("Cliente criado com sucesso!");
   } catch (error) {
     res.status(500).send("Erro ao criar o cliente.");
   }
@@ -33,7 +33,7 @@ export async function updateCliente(req, res) {
   try {
     const id = req.params.id;
     await ClienteQueries.update(id, req.body);
-    res.status(200).send("Usuário atualizado com sucesso!");
+    res.status(200).send("Cliente atualizado com sucesso!");
   } catch (error) {
     res.status(500).send("Erro ao atualizar o cliente.");
   }

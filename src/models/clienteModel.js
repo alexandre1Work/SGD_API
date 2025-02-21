@@ -9,7 +9,7 @@ class Cliente {
 
   constructor(id_cliente, cpf_cnpj, nome, telefone, endereco, email) {
 
-    // no ato de istânciar testa
+    // // no ato de istânciar testa
     if(cpf_cnpj.length === 11 && !validarCpf(cpf_cnpj)) {
       throw new Error("CPF inválido");
     }
@@ -75,6 +75,17 @@ class Cliente {
     }
     
     this.#cpf_cnpj = novoCpfCnpj;
+  }
+
+    toJSON() {
+    return {
+      id_cliente: this.id_cliente,  // Usando o getter para obter o valor
+      cpf_cnpj: this.cpf_cnpj,
+      nome: this.nome,
+      telefone: this.telefone,
+      endereco: this.endereco,
+      email: this.email,
+    };
   }
 }
 
