@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import clientesRoutes from "./routes/clientesRoutes.js";
 import userRoutes from "./routes/usersRoutes.js";
 import loginRoutes from "./routes/loginRoutes.js";
-// import registerRoutes from "./routes/registerRoutes.js";
 import funcionarioRoutes from "./routes/funcionarioRoutes.js";
 import produtoRoutes from "./routes/produtoRoutes.js";
+import servicoRoutes from "./routes/servicoRoutes.js";
 
 dotenv.config();
 
@@ -20,8 +20,8 @@ app.use(clientesRoutes);
 app.use(userRoutes);
 app.use(loginRoutes);
 app.use(funcionarioRoutes);
-// app.use(registerRoutes);
 app.use(funcionarioRoutes);
 app.use(produtoRoutes);
+app.use(servicoRoutes);
 
 app.listen(3000, () => console.log("Servidor rodando http://www.localhost:3000"));
