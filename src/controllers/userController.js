@@ -46,7 +46,7 @@ export async function deleteUser(req, res) {
   try {
     const id = req.params.id;
     await sql`
-    DELETE FROM tb_usuario WHERE id=${id};`;
+        `;
     res.status(200).send("Usuario deletado com sucesso.");
   } catch (error) {
     res.status(500).send("Erro ao deletar o usuario.");

@@ -1,4 +1,4 @@
-class User {
+export default class User {
   constructor(id, nome, cargo, email, senha) {
     this.id = id;
     this.nome = nome;
@@ -11,5 +11,3 @@ class User {
 
   set() {}
 }
-
-export default User;
