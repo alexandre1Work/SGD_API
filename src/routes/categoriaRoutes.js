@@ -11,9 +11,9 @@ import {
 const router = express.Router();
 
 router.get("/categoria", getCategorias);
-router.get("/categoria", getCategoria);
+router.get("/categoria/:id", getCategoria);
 router.post("/categoria", createCategoria);
-router.put("/categoria:id", updateCategoria);
-router.delete("/categoria:id", deleteCategoria);
+router.put("/categoria/:id", updateCategoria);
+router.delete("/categoria/:id", deleteCategoria);
 
 export default router;
