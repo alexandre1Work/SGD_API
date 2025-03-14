@@ -8,6 +8,7 @@ import funcionarioRoutes from "./routes/funcionarioRoutes.js";
 import produtoRoutes from "./routes/produtoRoutes.js";
 import servicoRoutes from "./routes/servicoRoutes.js";
 import veiculoRoutes from "./routes/veiculoRoutes.js";
+import categoriaRoutes from "./routes/categoriaRoutes.js";
 
 dotenv.config();
 
@@ -25,5 +26,6 @@ app.use(funcionarioRoutes);
 app.use(produtoRoutes);
 app.use(servicoRoutes);
 app.use(veiculoRoutes);
+app.use(categoriaRoutes);
 
 app.listen(3000, () => console.log("Servidor rodando http://www.localhost:3000"));
