@@ -15,3 +15,5 @@ router.get("/categoria", getCategoria);
 router.post("/categoria", createCategoria);
 router.put("/categoria:id", updateCategoria);
 router.delete("/categoria:id", deleteCategoria);
+
+export default router;
