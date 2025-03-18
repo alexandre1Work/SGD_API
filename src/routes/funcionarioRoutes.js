@@ -1,12 +1,12 @@
 import express from "express";
 
 import {
-    getFuncionarios,
-    getFuncionario,
-    updateFuncionario,
-    createFuncionario,
-    deleteFuncionario,
-} from "../controllers/funcionarioController.js"
+  getFuncionarios,
+  getFuncionario,
+  updateFuncionario,
+  createFuncionario,
+  deleteFuncionario,
+} from "../controllers/funcionarioController";
 
 const router = express.Router();
 

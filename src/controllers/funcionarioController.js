@@ -1,4 +1,4 @@
-import { FuncionarioQueries } from "../queries/funcionarioQueries.js";
+import { FuncionarioQueries } from "../queries/funcionarioQueries";
 
 export async function getFuncionarios(req, res) {
   try {

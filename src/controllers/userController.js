@@ -1,5 +1,5 @@
-import { salt } from "../config/bcrypt.js";
-import { sql } from "../services/db.js";
+import { salt } from "../config/bcrypt";
+import { sql } from "../services/db";
 import bcrypt from "bcrypt";
 
 //Rota GETALL não deve existir

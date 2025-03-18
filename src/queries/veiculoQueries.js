@@ -1,4 +1,4 @@
-import { sql } from "../services/db.js";
+import { sql } from "../services/db";
 
 export const VeiculoQueries = {
   getAll: async () => {

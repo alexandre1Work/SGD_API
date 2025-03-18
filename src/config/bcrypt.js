@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 
-const saltRounds = 10;
-
-export const salt = await bcrypt.genSalt(saltRounds);
+async function generateSalt() {
+  return await bcrypt.genSalt(10);
+}
+export const salt = generateSalt();

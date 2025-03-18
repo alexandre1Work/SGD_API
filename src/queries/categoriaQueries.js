@@ -1,5 +1,5 @@
 import { json } from "express";
-import { sql } from "../services/db.js";
+import { sql } from "../services/db";
 
 export const categoriaQueries = {
   getAll: async () => {

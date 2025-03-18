@@ -1,4 +1,4 @@
-import { VeiculoQueries } from "../queries/veiculoQueries.js";
+import { VeiculoQueries } from "../queries/veiculoQueries";
 
 export async function getVeiculos(req, res) {
   try {

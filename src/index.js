@@ -1,14 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import clientesRoutes from "./routes/clientesRoutes.js";
-import userRoutes from "./routes/usersRoutes.js";
-import loginRoutes from "./routes/loginRoutes.js";
-import funcionarioRoutes from "./routes/funcionarioRoutes.js";
-import produtoRoutes from "./routes/produtoRoutes.js";
-import servicoRoutes from "./routes/servicoRoutes.js";
-import veiculoRoutes from "./routes/veiculoRoutes.js";
-import categoriaRoutes from "./routes/categoriaRoutes.js";
+import clientesRoutes from "./routes/clientesRoutes";
+import userRoutes from "./routes/usersRoutes";
+import loginRoutes from "./routes/loginRoutes";
+import funcionarioRoutes from "./routes/funcionarioRoutes";
+import produtoRoutes from "./routes/produtoRoutes";
+import servicoRoutes from "./routes/servicoRoutes";
+import veiculoRoutes from "./routes/veiculoRoutes";
+import categoriaRoutes from "./routes/categoriaRoutes";
 
 dotenv.config();
 
@@ -16,6 +16,8 @@ export const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Middlewares
 
 //Rotas
 app.use(clientesRoutes);
@@ -28,4 +30,4 @@ app.use(servicoRoutes);
 app.use(veiculoRoutes);
 app.use(categoriaRoutes);
 
-app.listen(3000, () => console.log("Servidor rodando http://www.localhost:3000"));
+export const viteNodeApp = app;
