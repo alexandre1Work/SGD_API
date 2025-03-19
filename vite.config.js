@@ -17,4 +17,12 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    host: true,
+    port: process.env.PORT || 3000,
+    strictPort: true,
+  },
+  preview: {
+    allowedHosts: ["sgdapi-production.up.railway.app"],
+  },
 });
