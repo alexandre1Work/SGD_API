@@ -22,7 +22,7 @@ export async function getCliente(req, res) {
 
 export async function createCliente(req, res) {
   try {
-    await ClienteQueries.create(novoCliente.toJSON());
+    await ClienteQueries.create(req.body);
     res.status(200).send("Cliente criado com sucesso!");
   } catch (error) {
     res.status(500).send("Erro ao criar o cliente.");
