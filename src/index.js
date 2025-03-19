@@ -30,4 +30,4 @@ app.use(servicoRoutes);
 app.use(veiculoRoutes);
 app.use(categoriaRoutes);
 
-export const viteNodeApp = app;
+app.listen(3000, () => console.log("Servidor rodando http://www.localhost:3000"));
