@@ -1,4 +1,4 @@
-import { ProdutoQueries } from "../queries/produtoQueries";
+import { ProdutoQueries } from "../queries/produtoQueries.js";
 
 export async function getProdutos(req, res) {
   try {

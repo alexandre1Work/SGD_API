@@ -6,7 +6,7 @@ import {
   updateFuncionario,
   createFuncionario,
   deleteFuncionario,
-} from "../controllers/funcionarioController";
+} from "../controllers/funcionarioController.js";
 
 const router = express.Router();
 

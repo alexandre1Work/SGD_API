@@ -1,4 +1,4 @@
-import { ClienteQueries } from "../queries/clienteQueries";
+import { ClienteQueries } from "../queries/clienteQueries.js";
 
 export async function getClientes(req, res) {
   try {

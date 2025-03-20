@@ -1,4 +1,4 @@
-import { sql } from "../services/db";
+import { sql } from "../services/db.js";
 
 const userQueries = {
   getAll: async () => {

@@ -1,5 +1,11 @@
 import express from "express";
-import { getServicos, getServico, updateServico, deleteServico, createServico } from "../controllers/servicoController";
+import {
+  getServicos,
+  getServico,
+  updateServico,
+  deleteServico,
+  createServico,
+} from "../controllers/servicoController.js";
 
 const router = express.Router();
 

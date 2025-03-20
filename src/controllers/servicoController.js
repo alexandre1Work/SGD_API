@@ -1,4 +1,4 @@
-import { ServicoQueries } from "../queries/servicoQueries";
+import { ServicoQueries } from "../queries/servicoQueries.js";
 
 export async function getServicos(req, res) {
   try {

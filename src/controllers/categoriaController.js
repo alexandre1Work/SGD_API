@@ -1,4 +1,4 @@
-import { categoriaQueries } from "../queries/categoriaQueries";
+import { categoriaQueries } from "../queries/categoriaQueries.js";
 
 export async function getCategorias(req, res) {
   try {
