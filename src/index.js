@@ -30,4 +30,8 @@ app.use(servicoRoutes);
 app.use(veiculoRoutes);
 app.use(categoriaRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Rota padrão, nada a ver aqui!");
+});
+
 app.listen(3000, () => console.log("Servidor rodando http://www.localhost:3000"));
