@@ -1,3 +1,4 @@
+import clienteUseCase from "../useCases/clienteUseCase.js";
 import { ClienteQueries } from "../queries/clienteQueries.js";
 
 export async function getClientes(req, res) {
@@ -13,38 +14,39 @@ export async function getClientes(req, res) {
 export async function getCliente(req, res) {
   try {
     const id = req.params.id;
-    const cliente = await ClienteQueries.getById(id);
+    const cliente = await clienteUseCase.getClienteById(id);
     res.json(cliente);
-  } catch (err) {
-    res.status(500).send("Erro ao obter o cliente.");
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 }
 
 export async function createCliente(req, res) {
   try {
-    await ClienteQueries.create(req.body);
+    await clienteUseCase.createCliente(req.body);
     res.status(200).send("Cliente criado com sucesso!");
   } catch (error) {
-    res.status(500).send("Erro ao criar o cliente.");
+    res.status(500).json({ error: error.message }); //400 - servidor não pode processar a requisição devido a erros no lado do cliente
   }
 }
 
 export async function updateCliente(req, res) {
   try {
     const id = req.params.id;
-    await ClienteQueries.update(id, req.body);
+    await clienteUseCase.updateCliente(id, req.body);
     res.status(200).send("Cliente atualizado com sucesso!");
   } catch (error) {
-    res.status(500).send("Erro ao atualizar o cliente.");
+    res.status(500).json({ error: error.message });
   }
 }
 
 export async function deleteCliente(req, res) {
   try {
     const id = req.params.id;
-    await ClienteQueries.delete(id);
+    await clienteUseCase.deleteCliente(id);
     res.status(200).send("Cliente deletado com sucesso!");
   } catch (error) {
-    res.status(500).send("Erro ao deletar o cliente.");
+    res.status(400).json({ error: error.message });
   }
 }
+
