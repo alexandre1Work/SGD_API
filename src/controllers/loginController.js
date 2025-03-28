@@ -14,7 +14,7 @@ export async function login(req, res) {
       return res.status(422).send("Senha inválida.");
     }
 
-    const token = jwt.sign({ userId: usuario.id, userName: usuario.nome }, process.env.SECRET);
+    const token = jwt.sign({ userId: usuario.id, userName: usuario.nome, userRole: usuario.cargo }, process.env.SECRET);
     res.status(200).json(token);
   } catch (error) {
     res.status(500).send(error);
