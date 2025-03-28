@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ArtmdX/SGD_API#readme",
   "description": "",
   "devDependencies": {
+    "@types/node": "^22.13.14",
     "nodemon": "^3.1.9"
   },
   "dependencies": {

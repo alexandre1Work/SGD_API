@@ -21,6 +21,9 @@ class Cliente {
     if (clienteData.endereco.length < 5) {
       throw new Error("O endereço deve ter pelo menos 5 caracteres.");
     }
+    if (clienteData.endereco.length > 30) {
+      throw new Error("O endereço não pode ter mais de 30 caracteres.");
+    }
     // Validação de telefone
     const telefoneRegex = /^\d{9,}$/;
     if (!telefoneRegex.test(clienteData.telefone)) {
