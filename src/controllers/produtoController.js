@@ -1,4 +1,5 @@
 import { ProdutoQueries } from "../queries/produtoQueries.js";
+import ProdutoUseCase from "../useCases/produtoUseCase.js";
 
 export async function getProdutos(req, res) {
   try {
@@ -13,21 +14,21 @@ export async function getProdutos(req, res) {
 export async function getProduto(req, res) {
   try {
     const id = req.params.id;
-    const produto = await ProdutoQueries.getById(id);
+    const produto = await ProdutoUseCase.getProdutoById(id);
     res.json(produto);
   } catch (error) {
     console.log(error);
-    res.status(500).send("Erro ao buscar o produto");
+    res.status(400).json({ error: error.message });
   }
 }
 
 export async function createProduto(req, res) {
   try {
     const dados = req.body;
-    await ProdutoQueries.create(dados);
+    await ProdutoUseCase.createProduto(dados);
     res.status(200).send("Produto criado com sucesso!");
   } catch (error) {
-    res.status(500).send("Não foi possível criar um produto!");
+    res.status(400).json({ error: error.message });
   }
 }
 
@@ -35,19 +36,19 @@ export async function updateProduto(req, res) {
   try {
     const id = req.params.id;
     const dados = req.body;
-    await ProdutoQueries.update(id, dados);
+    await ProdutoUseCase.updateProduto(id, dados);
     res.status(200).send("Pruduto atualizado com sucesso!");
   } catch (error) {
-    res.status(500).send("Não foi possível atualizar produto");
+    res.status(400).json({ error: error.message });
   }
 }
 
 export async function deleteProduto(req, res) {
   try {
     const id = req.params.id;
-    await ProdutoQueries.delete(id);
+    await ProdutoUseCase.deleteProduto(id);
     res.status(200).send("Produto deletado com sucesso");
   } catch (error) {
-    res.status(500).send("Não foi possivel deletar o produto");
+    res.status(400).json({ error: error.message });
   }
 }

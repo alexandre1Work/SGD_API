@@ -5,7 +5,8 @@ export const ServicoQueries = {
     return await sql`SELECT * FROM tb_servico`;
   },
   getById: async (id_servico) => {
-    return await sql`SELECT * FROM tb_servico WHERE id_servico = ${id_servico}`;
+    const result = await sql`SELECT * FROM tb_servico WHERE id_servico = ${id_servico}`;
+    return result.length > 0 ? result[0] : null; // Retorna null se não encontrar
   },
   create: async ({ descricao, valor, dt_servico, id_categoria }) => {
     const result = await sql`

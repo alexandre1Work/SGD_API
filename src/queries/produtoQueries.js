@@ -5,7 +5,8 @@ export const ProdutoQueries = {
     return await sql`SELECT * FROM tb_produto`;
   },
   getById: async (id) => {
-    return await sql`SELECT * FROM tb_produto WHERE id_produto = ${id}`;
+    const result = await sql`SELECT * FROM tb_produto WHERE id_produto = ${id}`;
+    return result.length > 0 ? result[0] : null; // Retorna null se não encontrar
   },
   create: async ({ nome, un_medida, qtd_estoque }) => {
     const result = await sql`INSERT INTO tb_produto (nome, un_medida, qtd_estoque)

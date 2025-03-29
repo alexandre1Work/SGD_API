@@ -5,7 +5,8 @@ export const FuncionarioQueries = {
     return await sql`SELECT * FROM tb_funcionario`;
   },
   getById: async (id) => {
-    return await sql`SELECT * FROM tb_funcionario WHERE id_funcionario = ${id}`;
+    const result = await sql`SELECT * FROM tb_funcionario WHERE id_funcionario = ${id}`;
+    return result.length > 0 ? result[0] : null; // Retorna null se não encontrar
   },
   create: async ({ cpf, nome, telefone, endereco, email }) => {
     const result =

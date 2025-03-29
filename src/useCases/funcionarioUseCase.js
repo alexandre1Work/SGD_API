@@ -3,6 +3,7 @@ import { FuncionarioQueries } from "../queries/funcionarioQueries.js";
 
 class funcionarioUseCase {
   static async createFuncionario(data) {
+    
     Funcionario.validate(data);
 
     const { cpf, nome, telefone, endereco, email } = data;

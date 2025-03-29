@@ -6,7 +6,8 @@ export const ClienteQueries = {
   },
 
   getById: async (id) => {
-    return await sql`SELECT * FROM tb_cliente WHERE id_cliente = ${id}`;
+    const result = await sql`SELECT * FROM tb_cliente WHERE id_cliente = ${id}`;
+    return result.length > 0 ? result[0] : null; // Retorna null se não encontrar
   },
 
   create: async ({ cpf_cnpj, nome, telefone, endereco, email }) => {
