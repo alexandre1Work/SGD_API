@@ -8,7 +8,8 @@ class ClienteUseCase {
     Cliente.validate(data);
 
     const { cpf_cnpj, nome, telefone, endereco, email } = data;
-    await ClienteQueries.create({
+
+    const clienteId = await ClienteQueries.create({
       cpf_cnpj,
       nome,
       telefone,
@@ -17,7 +18,16 @@ class ClienteUseCase {
     });
 
     //retorna um objeto, passando pelo construtor da Classe cliente
-    return new Cliente(cpf_cnpj, nome, telefone, endereco, email);
+    const cliente = new Cliente(
+      clienteId,
+      cpf_cnpj,
+      nome,
+      telefone,
+      endereco,
+      email
+    );
+
+    return cliente;
   }
 
   //validação de atualização

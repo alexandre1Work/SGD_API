@@ -8,8 +8,9 @@ export const categoriaQueries = {
     return await sql`SELECT * FROM tb_categoria WHERE id_categoria = ${id}`;
   },
   create: async ({ categoria }) => {
-    return await sql`INSERT INTO tb_categoria (categoria)
-            VALUES (${categoria})`;
+    const result = await sql`INSERT INTO tb_categoria (categoria)
+          VALUES (${categoria}) RETURNING id_categoria;`;
+    return result.length > 0 ? result[0].id_categoria : null;
   },
   update: async (id, { categoria }) => {
     return await sql`UPDATE tb_categoria

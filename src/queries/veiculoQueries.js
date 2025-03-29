@@ -8,8 +8,9 @@ export const VeiculoQueries = {
     return await sql`SELECT * FROM tb_veiculo WHERE id_veiculo = ${id}`;
   },
   create: async ({ placa, marca, modelo, ano }) => {
-    return await sql`INSERT INTO tb_veiculo (placa, marca, modelo, ano)
-        VALUES (${placa}, ${marca}, ${modelo}, ${ano});`;
+    const result = await sql`INSERT INTO tb_veiculo (placa, marca, modelo, ano)
+        VALUES (${placa}, ${marca}, ${modelo}, ${ano}) RETURNING id_veiculo;`;
+    return result.length > 0 ? result[0].id_veiculo : null;
   },
   update: async (id, { placa, marca, modelo, ano }) => {
     return await sql`UPDATE tb_veiculo

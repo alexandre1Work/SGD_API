@@ -8,8 +8,11 @@ export const FuncionarioQueries = {
     return await sql`SELECT * FROM tb_funcionario WHERE id_funcionario = ${id}`;
   },
   create: async ({ cpf, nome, telefone, endereco, email }) => {
-    return await sql`INSERT INTO tb_funcionario (cpf, nome, telefone, endereco, email)
-        VALUES (${cpf}, ${nome}, ${telefone}, ${endereco}, ${email});`;
+    const result =
+      await sql`INSERT INTO tb_funcionario (cpf, nome, telefone, endereco, email)
+        VALUES (${cpf}, ${nome}, ${telefone}, ${endereco}, ${email}) 
+        RETURNING id_funcionario;`;
+    return result.length > 0 ? result[0].id_funcionario : null;
   },
   update: async (id, { cpf, nome, telefone, endereco, email }) => {
     return await sql`UPDATE tb_funcionario

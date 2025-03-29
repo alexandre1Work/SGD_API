@@ -6,7 +6,7 @@ class funcionarioUseCase {
     Funcionario.validate(data);
 
     const { cpf, nome, telefone, endereco, email } = data;
-    await FuncionarioQueries.create({
+    const funcionarioId = await FuncionarioQueries.create({
       cpf,
       nome,
       telefone,
@@ -14,7 +14,9 @@ class funcionarioUseCase {
       email,
     });
 
-    return new Funcionario(cpf, nome, telefone, endereco, email);
+    const funcionario = new Funcionario(funcionarioId, cpf, nome, telefone, endereco, email);
+
+    return funcionario;
   }
 
   static async updateFuncionario(id, data) {
@@ -27,7 +29,14 @@ class funcionarioUseCase {
     Funcionario.validate(data);
 
     await FuncionarioQueries.update(id, data);
-    return new Funcionario(data.id_funcionario, data.cpf, data.nome, data.telefone, data.endereco, data.email);
+    return new Funcionario(
+      data.id_funcionario,
+      data.cpf,
+      data.nome,
+      data.telefone,
+      data.endereco,
+      data.email
+    );
   }
 
   static async getFuncionarioById(id) {

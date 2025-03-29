@@ -8,8 +8,9 @@ export const ProdutoQueries = {
     return await sql`SELECT * FROM tb_produto WHERE id_produto = ${id}`;
   },
   create: async ({ nome, un_medida, qtd_estoque }) => {
-    return await sql`INSERT INTO tb_produto (nome, un_medida, qtd_estoque)
-        VALUES (${nome}, ${un_medida}, ${qtd_estoque});`;
+    const result = await sql`INSERT INTO tb_produto (nome, un_medida, qtd_estoque)
+        VALUES (${nome}, ${un_medida}, ${qtd_estoque}) RETURNING id_produto;`;
+        return result.length > 0 ? result[0].id_produto : null;
   },
   update: async (id_produto, { nome, un_medida, qtd_estoque }) => {
     return await sql`UPDATE tb_produto

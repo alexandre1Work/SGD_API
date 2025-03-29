@@ -8,9 +8,10 @@ export const ServicoQueries = {
     return await sql`SELECT * FROM tb_servico WHERE id_servico = ${id_servico}`;
   },
   create: async ({ descricao, valor, dt_servico, id_categoria }) => {
-    return await sql`
+    const result = await sql`
     INSERT INTO tb_servico (descricao, valor, dt_servico, id_categoria)
-    VALUES (${descricao}, ${valor}, ${dt_servico}, ${id_categoria});`;
+    VALUES (${descricao}, ${valor}, ${dt_servico}, ${id_categoria}) RETURNING id_servico;`;
+    return result.length > 0 ? result[0].id_servico : null;
   },
   update: async (id_servico, { descricao, valor, dt_servico, id_categoria }) => {
     return await sql`
