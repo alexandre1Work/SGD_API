@@ -1,4 +1,5 @@
 import { ServicoQueries } from "../queries/servicoQueries.js";
+import ServicoUseCase from "../useCases/servicoUseCase.js";
 
 export async function getServicos(req, res) {
   try {
@@ -23,10 +24,10 @@ export async function getServico(req, res) {
 export async function createServico(req, res) {
   try {
     const dados = req.body;
-    await ServicoQueries.create(dados);
+    await ServicoUseCase.createServico(dados);
     res.status(200).send("Servico criado com sucesso!");
   } catch (error) {
-    res.status(500).send("Erro ao criar o serviço: " + error);
+    return res.status(500).json({ error: error.message });
   }
 }
 
