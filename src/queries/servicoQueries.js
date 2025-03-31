@@ -8,6 +8,7 @@ export const ServicoQueries = {
       s.descricao,
       s.valor,
       s.dt_servico,
+      s.status,
       c.id_cliente,
       c.nome AS cliente_nome,
       c.cpf_cnpj AS cliente_cpf,
@@ -28,6 +29,7 @@ export const ServicoQueries = {
       s.descricao,
       s.valor,
       s.dt_servico,
+      s.status,
       c.id_cliente,
       c.nome AS cliente_nome,
       c.cpf_cnpj AS cliente_cpf,
@@ -59,17 +61,15 @@ export const ServicoQueries = {
     return result.length > 0 ? result[0].id_servico : null;
   },
 
-  update: async (
-    id_servico,
-    { descricao, valor, dt_servico, id_categoria, id_cliente }
-  ) => {
+  update: async (id_servico, { descricao, valor, dt_servico, id_categoria, id_cliente, status }) => {
     return await sql`
       UPDATE tb_servico
       SET descricao = ${descricao},
           valor = ${valor},
           dt_servico = ${dt_servico},
           id_categoria = ${id_categoria},
-          id_cliente = ${id_cliente}
+          id_cliente = ${id_cliente},
+          status = ${status}
       WHERE id_servico = ${id_servico};
     `;
   },

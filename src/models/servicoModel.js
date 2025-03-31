@@ -31,12 +31,25 @@ class Servico {
     if (!Number.isInteger(servicoData.id_cliente) || servicoData.id_cliente <= 0) {
       errors.push("O ID do cliente deve ser um número inteiro positivo.");
     }
-    if (!servicoData.descricao || !servicoData.valor || !servicoData.dt_servico || !servicoData.id_categoria || !servicoData.id_cliente || !servicoData.status) {
-      throw new Error("Todos os campos obrigatórios devem ser preenchidos.");
-    }
 
-    return errors.length > 0 ? errors : null;
+    //EXIBE TODOS OS ERROS
+    if (errors.length > 0) {
+      throw new Error(errors.join(" | "));
+    }
   }
+
+  toJSON(){
+      return {
+        id: this.id,
+        descricao: this.descricao,
+        valor: this.valor,
+        dt_servico: this.dt_servico,
+        id_categoria: this.id_categoria,
+        id_cliente: this.id_cliente,
+        status: this.status
+    }
+  }
+  
 }
 
 export default Servico;

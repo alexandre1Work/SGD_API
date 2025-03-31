@@ -9,37 +9,47 @@ class Cliente {
   }
 
   static validate(clienteData) {
+    const errors = []
+
     // Validação de nome
     if (clienteData.nome.length < 3) {
-      throw new Error("O nome deve ter pelo menos 3 caracteres.");
+      errors.push("O nome deve ter pelo menos 3 caracteres.");
     }
     // Validação de e-mail
     if (!/\S+@\S+\.\S+/.test(clienteData.email)) {
-      throw new Error("E-mail inválido.");
+      errors.push("E-mail inválido.");
     }
     // Validação de endereço
     if (clienteData.endereco.length < 5) {
-      throw new Error("O endereço deve ter pelo menos 5 caracteres.");
+      errors.push("O endereço deve ter pelo menos 5 caracteres.");
     }
     if (clienteData.endereco.length > 30) {
-      throw new Error("O endereço não pode ter mais de 30 caracteres.");
+      errors.push("O endereço não pode ter mais de 30 caracteres.");
     }
     // Validação de telefone
     const telefoneRegex = /^\d{9,}$/;
     if (!telefoneRegex.test(clienteData.telefone)) {
-      throw new Error("O telefone deve ter pelo menos 9 dígitos numéricos.");
+      errors.push("O telefone deve ter pelo menos 9 dígitos numéricos.");
     }
-    // Validação de CPF/CNPJ CURTOS
+
+    // Remove pontos e traços
     const cpfCnpj = clienteData.cpf_cnpj.replace(/\D/g, "");
+    
     if (cpfCnpj.length !== 11 && cpfCnpj.length !== 14) {
-      throw new Error("CPF ou CNPJ inválido.");
+      errors.push("CPF ou CNPJ inválido.");
     }
+
     // Validação de CPF/CNPJ
-    if (clienteData.cpf_cnpj.length === 11 && !validarCpf(clienteData.cpf_cnpj)) {
-      throw new Error("CPF inválido.");
+    if (cpfCnpj.length === 11 && !validarCpf(cpfCnpj)) {
+      errors.push("CPF inválido.");
     }
-    if (clienteData.cpf_cnpj.length === 14 && !validarCnpj(clienteData.cpf_cnpj)) {
-      throw new Error("CNPJ inválido.");
+    if (cpfCnpj.length === 14 && !validarCnpj(cpfCnpj)) {
+      errors.push("CNPJ inválido.");
+    }
+
+    //EXIBE TODOS OS ERROS
+    if (errors.length > 0) {
+      throw new Error(errors.join(" | "));
     }
   }
 

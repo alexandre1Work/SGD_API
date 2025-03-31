@@ -1,4 +1,3 @@
-import { error } from "console";
 import Servico from "../models/servicoModel.js";
 import { ServicoQueries } from "../queries/servicoQueries.js";
 

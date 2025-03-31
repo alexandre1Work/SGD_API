@@ -9,28 +9,34 @@ class Funcionario {
   }
 
   static validate(funcionarioData) {
-    // Validação de nome
+    const errors = []
+
     if (funcionarioData.nome.length < 3) {
-      throw new Error("O nome deve ter pelo menos 3 caracteres.");
+      errors.push("O nome deve ter pelo menos 3 caracteres.");
     }
     // Validação de e-mail
     if (!/\S+@\S+\.\S+/.test(funcionarioData.email)) {
-      throw new Error("E-mail inválido.");
+      errors.push("E-mail inválido.");
     }
     // Validação de endereço
     if (funcionarioData.endereco.length < 5) {
-      throw new Error("O endereço deve ter pelo menos 5 caracteres.");
+      errors.push("O endereço deve ter pelo menos 5 caracteres.");
     }
     if (funcionarioData.endereco.length > 30) {
-      throw new Error("O endereço não pode ter mais de 30 caracteres.");
+      errors.push("O endereço não pode ter mais de 30 caracteres.");
     }
     // Validação de telefone
     const telefoneRegex = /^\d{9,}$/;
     if (!telefoneRegex.test(funcionarioData.telefone)) {
-      throw new Error("O telefone deve ter pelo menos 9 dígitos numéricos.");
+      errors.push("O telefone deve ter pelo menos 9 dígitos numéricos.");
     }
     if (funcionarioData.cpf.length !== 11 && !validarCpf(funcionarioData.cpf)) {
-      throw new Error("CPF inválido.");
+      errors.push("CPF inválido.");
+    }
+
+    //EXIBE TODOS OS ERROS
+    if (errors.length > 0) {
+      throw new Error(errors.join(" | "));
     }
   }
 
