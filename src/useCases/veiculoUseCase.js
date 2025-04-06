@@ -1,5 +1,5 @@
-import Veiculo from "../models/veiculoModel";
-import { VeiculoQueries } from "../queries/veiculoQueries";
+import Veiculo from "../models/veiculoModel.js";
+import { VeiculoQueries } from "../queries/veiculoQueries.js";
 
 class VeiculoUseCase {
   static async createVeiculo(data) {
@@ -33,13 +33,13 @@ class VeiculoUseCase {
   }
 
   static async getByIdVeiculo(id) {
-    const servico = await VeiculoQueries.getById(id);
+    const veiculo = await VeiculoQueries.getById(id);
 
-    if (!servico) {
+    if (!veiculo) {
       throw new Error("Veiculo não encontrado");
     }
 
-    return servico;
+    return veiculo;
   }
 
   static async deleteVeiculo(id) {

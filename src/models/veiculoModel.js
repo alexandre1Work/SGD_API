@@ -22,7 +22,7 @@ class Veiculo {
     }
 
     if (!veiculoData.marca) {
-      errors.push("O modelo é obrigátorio");
+      errors.push("A marca é obrigátoria");
     }
 
     if (errors.length > 0) {

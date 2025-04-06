@@ -27,7 +27,7 @@ export async function createVeiculo(req, res) {
     await VeiculoUseCase.createVeiculo(dados);
     res.status(200).send("Veiculo criado com sucesso!");
   } catch (error) {
-    res.status(500).send("Não foi possível criar o veiculo: " + error);
+    return res.status(500).json({ error: error.message });
   }
 }
 
@@ -39,7 +39,7 @@ export async function updateVeiculo(req, res) {
     await VeiculoUseCase.updateVeiculo(id, dados);
     res.status(200).send("Veiculo atualizado com sucesso");
   } catch (error) {
-    res.status(500).send("Não foi possível atualizar o veiculo");
+    return res.status(500).json({ error: error.message });
   }
 }
 
@@ -49,6 +49,6 @@ export async function deleteVeiculo(req, res) {
     await VeiculoUseCase.deleteVeiculo(id);
     res.status(200).send("Veiculo deletado com sucesso");
   } catch (error) {
-    res.status(500).send("Erro ao deletar o veiculo");
+    return res.status(500).json({ error: error.message });
   }
 }
