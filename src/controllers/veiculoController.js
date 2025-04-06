@@ -1,4 +1,5 @@
 import { VeiculoQueries } from "../queries/veiculoQueries.js";
+import VeiculoUseCase from "../useCases/veiculoUseCase.js";
 
 export async function getVeiculos(req, res) {
   try {
@@ -13,16 +14,17 @@ export async function getVeiculos(req, res) {
 export async function getVeiculo(req, res) {
   try {
     const id = req.params.id;
-    const veiculo = await VeiculoQueries.getById(id);
+    const veiculo = await VeiculoUseCase.getByIdVeiculo(id);
     res.json(veiculo);
   } catch (error) {
-    res.status(500).send("Erro ao obter veiculo");
+    return res.status(500).json({ error: error.message });
   }
 }
 
 export async function createVeiculo(req, res) {
   try {
-    await VeiculoQueries.create(req.body);
+    const dados = req.body;
+    await VeiculoUseCase.createVeiculo(dados);
     res.status(200).send("Veiculo criado com sucesso!");
   } catch (error) {
     res.status(500).send("Não foi possível criar o veiculo: " + error);
@@ -34,7 +36,7 @@ export async function updateVeiculo(req, res) {
     const id = req.params.id;
     const dados = req.body;
 
-    await VeiculoQueries.update(id, dados);
+    await VeiculoUseCase.updateVeiculo(id, dados);
     res.status(200).send("Veiculo atualizado com sucesso");
   } catch (error) {
     res.status(500).send("Não foi possível atualizar o veiculo");
@@ -44,7 +46,7 @@ export async function updateVeiculo(req, res) {
 export async function deleteVeiculo(req, res) {
   try {
     const id = req.params.id;
-    await VeiculoQueries.delete(id);
+    await VeiculoUseCase.deleteVeiculo(id);
     res.status(200).send("Veiculo deletado com sucesso");
   } catch (error) {
     res.status(500).send("Erro ao deletar o veiculo");
