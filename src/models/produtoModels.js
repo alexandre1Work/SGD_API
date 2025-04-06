@@ -13,12 +13,16 @@ class Produto {
       errors.push("O nome do produto deve ter pelo menos 3 caracteres.");
     }
 
-    if (typeof produtoData.qtd_estoque !== "number" || !Number.isInteger(produtoData.qtd_estoque) || produtoData.qtd_estoque < 0) {
+    if (
+      typeof produtoData.qtd_estoque !== "number" ||
+      !Number.isInteger(produtoData.qtd_estoque) ||
+      produtoData.qtd_estoque < 0
+    ) {
       errors.push(
         "A quantidade em estoque deve ser um número inteiro maior ou igual a 0."
       );
     }
-    
+
     //EXIBE TODOS OS ERROS
     if (errors.length > 0) {
       throw new Error(errors.join(" | "));
