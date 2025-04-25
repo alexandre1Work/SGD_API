@@ -2,7 +2,6 @@ class Produto {
   constructor(
     id_produto,
     nome,
-    un_medida,
     qtd_estoque,
     categoria,
     preco,
@@ -11,7 +10,6 @@ class Produto {
   ) {
     this.id_produto = id_produto;
     this.nome = nome;
-    this.un_medida = un_medida;
     this.qtd_estoque = qtd_estoque;
     this.categoria = categoria;
     this.preco = preco;
@@ -55,7 +53,6 @@ class Produto {
     return {
       id_produto: this.id_produto,
       nome: this.nome,
-      un_medida: this.un_medida,
       qtd_estoque: this.qtd_estoque,
       categoria: this.categoria,
       preco: this.preco,
