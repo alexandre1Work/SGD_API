@@ -1,12 +1,22 @@
 import { sql } from "../services/db.js";
+import { parseDateToTimestamp, formatDateToDDMMYYYY } from "../utils/date.js";
 
 export const ProdutoQueries = {
   getAll: async () => {
-    return await sql`SELECT * FROM tb_produto`;
+    const result = await sql`SELECT * FROM tb_produto`;
+    return result.map((produto) => ({
+      ...produto,
+      ultima_atualizacao: formatDateToDDMMYYYY(produto.ultima_atualizacao),
+    }));
   },
   getById: async (id) => {
     const result = await sql`SELECT * FROM tb_produto WHERE id_produto = ${id}`;
-    return result.length > 0 ? result[0] : null; // Retorna null se não encontrar
+    if (result.length === 0) return null;
+    const produto = result[0];
+    return {
+      ...produto,
+      ultima_atualizacao: formatDateToDDMMYYYY(produto.ultima_atualizacao),
+    };
   },
   create: async ({
     nome,
@@ -16,9 +26,10 @@ export const ProdutoQueries = {
     status,
     ultima_atualizacao,
   }) => {
+    const ultimaAtualizacaoDate = parseDateToTimestamp(ultima_atualizacao);
     const result = await sql`
       INSERT INTO tb_produto (nome, qtd_estoque, categoria, preco, status, ultima_atualizacao)
-      VALUES (${nome}, ${qtd_estoque}, ${categoria}, ${preco}, ${status}, ${ultima_atualizacao})
+      VALUES (${nome}, ${qtd_estoque}, ${categoria}, ${preco}, ${status}, ${ultimaAtualizacaoDate})
       RETURNING id_produto;`;
     return result.length > 0 ? result[0].id_produto : null;
   },
@@ -26,6 +37,7 @@ export const ProdutoQueries = {
     id_produto,
     { nome, qtd_estoque, categoria, preco, status, ultima_atualizacao }
   ) => {
+    const ultimaAtualizacaoDate = parseDateToTimestamp(ultima_atualizacao);
     return await sql`
       UPDATE tb_produto
       SET nome = ${nome},
@@ -33,7 +45,7 @@ export const ProdutoQueries = {
           categoria = ${categoria},
           preco = ${preco},
           status = ${status},
-          ultima_atualizacao = ${ultima_atualizacao}
+          ultima_atualizacao = ${ultimaAtualizacaoDate}
       WHERE id_produto = ${id_produto};`;
   },
   delete: async (id_produto) => {
