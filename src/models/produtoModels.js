@@ -1,5 +1,14 @@
 class Produto {
-  constructor(id_produto, nome, un_medida, qtd_estoque, categoria, preco, status, ultima_atualizacao) {
+  constructor(
+    id_produto,
+    nome,
+    un_medida,
+    qtd_estoque,
+    categoria,
+    preco,
+    status,
+    ultima_atualizacao
+  ) {
     this.id_produto = id_produto;
     this.nome = nome;
     this.un_medida = un_medida;
@@ -27,8 +36,7 @@ class Produto {
       );
     }
 
-    // Validação básica dos novos campos
-    if (produtoData.preco !== undefined && (typeof produtoData.preco !== "number" || produtoData.preco < 0)) {
+    if (produtoData.preco !== undefined && produtoData.preco < 0) {
       errors.push("O preço deve ser um número positivo.");
     }
     if (produtoData.status && typeof produtoData.status !== "string") {
@@ -37,9 +45,7 @@ class Produto {
     if (produtoData.categoria && typeof produtoData.categoria !== "string") {
       errors.push("Categoria deve ser uma string.");
     }
-    // Não validar data, pois pode ser gerada pelo banco
 
-    //EXIBE TODOS OS ERROS
     if (errors.length > 0) {
       throw new Error(errors.join(" | "));
     }
