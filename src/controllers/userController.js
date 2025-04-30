@@ -1,4 +1,3 @@
-import { salt } from "../config/bcrypt.js";
 import { sql } from "../services/db.js";
 import bcrypt from "bcrypt";
 
@@ -56,6 +55,7 @@ export async function deleteUser(req, res) {
 export async function register(req, res) {
   try {
     const { nome, cargo, email, senha } = req.body;
+    const salt = await bcrypt.genSalt(10);
     const senhaHash = await bcrypt.hash(senha, salt);
 
     await sql`
