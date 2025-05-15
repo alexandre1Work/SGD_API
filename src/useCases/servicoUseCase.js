@@ -23,7 +23,10 @@ class ServicoUseCase {
 
   static async getStatusServicos() {
     const status = await ServicoQueries.getStatus();
-    return status;
+    return status.map(item => ({
+      name: item.name,
+      value: parseInt(item.value, 10)
+    }));
   }
 
   static async updateServico(id, data) {
