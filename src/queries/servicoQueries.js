@@ -47,7 +47,7 @@ export const ServicoQueries = {
 
   getStatus: async () => {
     const result = await sql`
-    SELECT status, COUNT(*) AS total
+    SELECT status AS name, COUNT(*) AS value
     FROM tb_servico
     GROUP BY status;
     `;
