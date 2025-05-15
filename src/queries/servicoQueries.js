@@ -1,4 +1,4 @@
-import { sql } from "../services/db.js";
+import { sql } from '../services/db.js';
 
 export const ServicoQueries = {
   getAll: async () => {
@@ -22,7 +22,7 @@ export const ServicoQueries = {
   `;
   },
 
-  getById: async (id_servico) => {
+  getById: async id_servico => {
     const result = await sql`
     SELECT 
       s.id_servico,
@@ -45,14 +45,16 @@ export const ServicoQueries = {
     return result.length > 0 ? result[0] : null;
   },
 
-  create: async ({
-    descricao,
-    valor,
-    dt_servico,
-    id_categoria,
-    id_cliente,
-    status
-  }) => {
+  getStatus: async () => {
+    const result = await sql`
+    SELECT status, COUNT(*) AS total
+    FROM tb_servico
+    GROUP BY status;
+    `;
+    return result;
+  },
+
+  create: async ({ descricao, valor, dt_servico, id_categoria, id_cliente, status }) => {
     const result = await sql`
     INSERT INTO tb_servico (descricao, valor, dt_servico, id_categoria, id_cliente, status)
     VALUES (${descricao}, ${valor}, ${dt_servico}, ${id_categoria}, ${id_cliente}, ${status})
@@ -74,7 +76,7 @@ export const ServicoQueries = {
     `;
   },
 
-  delete: async (id_servico) => {
+  delete: async id_servico => {
     return await sql`DELETE FROM tb_servico WHERE id_servico = ${id_servico}`;
-  },
+  }
 };
