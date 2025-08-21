@@ -20,4 +20,5 @@ export const categoriaQueries = {
   delete: async (id) => {
     return await sql`DELETE FROM tb_categoria WHERE id_categoria = ${id}`;
   },
+  
 };
