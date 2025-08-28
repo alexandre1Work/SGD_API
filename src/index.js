@@ -9,6 +9,7 @@ import produtoRoutes from './routes/produtoRoutes.js';
 import servicoRoutes from './routes/servicoRoutes.js';
 import veiculoRoutes from './routes/veiculoRoutes.js';
 import categoriaRoutes from './routes/categoriaRoutes.js';
+import { register } from './controllers/userController.js';
 
 dotenv.config();
 
@@ -24,11 +25,13 @@ app.use(clientesRoutes);
 app.use(userRoutes);
 app.use(loginRoutes);
 app.use(funcionarioRoutes);
-app.use(funcionarioRoutes);
 app.use(produtoRoutes);
 app.use(servicoRoutes);
 app.use(veiculoRoutes);
 app.use(categoriaRoutes);
+
+// Rota de registro na raiz
+app.post('/register', register);
 
 app.get('/', (req, res) => {
   res.send('Rota padrão, nada a ver aqui!');
